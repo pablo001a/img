@@ -22,35 +22,28 @@
             max-width: 100%;
             max-height: 100%;
         }
-        /* Removido o estilo para o vídeo */
-        /* .video-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-        }
-        video {
-            max-width: 100%;
-            max-height: 100vh;
-            object-fit: contain;
-        } */
     </style>
 </head>
 <body>
-    <!-- Mantém a imagem de fundo original -->
-    <img src="background.png" alt="Imagem de Fundo">
-
-    <!-- Removido o container do vídeo -->
-    <!-- <div class="video-container">
-        <video autoplay loop muted playsinline>
-            <source src="Dragon.mp4" type="video/mp4">
-            Seu navegador não suporta vídeos HTML5.
-        </video>
-    </div> -->
-
+    <!-- Imagem será inserida dinamicamente -->
     <script>
-        // Não é necessário script para o vídeo
+        // Obter o parâmetro 'image' da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const imageName = urlParams.get('image');
+
+        // Verificar se o parâmetro 'image' foi fornecido
+        if (imageName) {
+            // Criar uma tag <img> dinamicamente
+            const img = document.createElement('img');
+            img.src = imageName; // Definir o caminho da imagem
+            img.alt = 'Dynamic Image'; // Descrição alternativa
+
+            // Adicionar a imagem ao corpo do documento
+            document.body.appendChild(img);
+        } else {
+            // Caso nenhum parâmetro seja fornecido, exibir uma mensagem de erro
+            document.body.innerHTML = '<p style="color: red;">Erro: Parâmetro "image" não especificado.</p>';
+        }
     </script>
 </body>
 </html>
